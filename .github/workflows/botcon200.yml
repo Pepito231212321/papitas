@@ -15,6 +15,10 @@ on:
         description: 'Mensaje para llamar al administrador'
         required: true
         default: 'admin'
+      password:
+        description: 'Contraseña de la sala (opcional)'
+        required: false
+        default: ''
 
 jobs:
   run-bots:
@@ -228,6 +232,8 @@ jobs:
       HAXBALL_ROOMS: ${{ github.event.inputs.haxball_rooms }}
       MENSAJE: ${{ github.event.inputs.mensaje }}
       LLAMAR_ADMIN: ${{ github.event.inputs.llamar_admin }}
+      HAXBALL_PASSWORD: ${{ github.event.inputs.password }}
+
 
     steps:
       - name: Checkout code
