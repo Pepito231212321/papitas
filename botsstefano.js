@@ -64,66 +64,82 @@ async function main() {
         await nickInput.type(BOT_NICKNAME);
         await nickInput.press('Enter');
 
-// --- CONTRASEÑA REAL (FIX ROBUSTO) ---
+// --- CONTRASEÑA REAL (FIX DEFINITIVO) ---
 if (process.env.HAXBALL_PASSWORD && process.env.HAXBALL_PASSWORD.trim() !== "") {
     console.log("⏳ Esperando input de contraseña...");
 
     try {
-        // 1) Primero intentá buscar por maxlength=30 (muy común en Haxball)
-        let passSelector = 'input[data-hook="input"][maxlength="30"]';
         let passInput = null;
 
+        // 1) Intento directo: maxlength=30 (Haxball original)
+        const passSelector = 'input[data-hook="input"][maxlength="30"]';
         try {
-            await frame.waitForSelector(passSelector, { timeout: 8000 });
+            await frame.waitForSelector(passSelector, { timeout: 6000 });
             passInput = await frame.$(passSelector);
-            console.log("🔐 Selector exacto encontrado (maxlength=30).");
+            console.log("🔐 Input de contraseña detectado (maxlength=30).");
         } catch (e) {
-            // 2) Si no aparece, fallback: esperá a que existan 2 inputs (nick + pass)
-            console.log("⚠️ Selector exacto no apareció — intentando detectar segundo input...");
+            console.log("⚠️ No apareció maxlength=30, buscando segundo input...");
+
+            // 2) Si no aparece, buscar segundo input (nick + pass)
             await frame.waitForFunction(() => {
-                return document.querySelectorAll('input[data-hook=\"input\"]').length >= 2;
-            }, { timeout: 8000 });
+                return document.querySelectorAll('input[data-hook="input"]').length >= 2;
+            }, { timeout: 6000 });
 
             const inputs = await frame.$$('input[data-hook="input"]');
-            passInput = inputs[1]; // segundo input = contraseña
-            if (passInput) console.log("🔐 Segundo input detectado (fallback).");
+
+            if (inputs.length >= 2) {
+                passInput = inputs[1];
+                console.log("🔐 Segundo input detectado como contraseña.");
+            }
         }
 
-        if (!passInput) throw new Error("No se pudo obtener handle del input de password.");
+        if (!passInput) {
+            throw new Error("No se pudo encontrar el input de contraseña");
+        }
 
-        // 3) Forzar foco de forma fiable
+        // ---- FORZAR FOCO CORRECTAMENTE ----
         try {
-            await passInput.focus(); // método nativo, más confiable que click
-            // un pequeño wait para asegurar foco
-            await frame.waitForTimeout(150);
-            // hacer click como respaldo (por si focus no alcanza)
-            await passInput.click({ delay: 60 });
-        } catch (focusErr) {
-            // si focus falla, intentá click por coordenadas (último recurso)
-            console.log("⚠️ focus() falló, probando click por boundingBox...");
+            await passInput.focus();
+        } catch (_) {}
+
+        // pequeño delay para asegurar foco
+        await new Promise(res => setTimeout(res, 100));
+
+        // Intento de click dentro del IFRAME (importante!)
+        try {
             const box = await passInput.boundingBox();
             if (box) {
-                // boundingBox devuelve coords relativas al viewport de la página principal
-                await page.mouse.click(box.x + box.width / 2, box.y + box.height / 2, { clickCount: 1 });
+                // Click usando coordenadas RELATIVAS AL IFRAME
+                const frameBox = await iframeElement.boundingBox();
+
+                await page.mouse.click(
+                    frameBox.x + box.x + box.width / 2,
+                    frameBox.y + box.y + box.height / 2
+                );
             } else {
-                // fallback final
-                await passInput.click({ delay: 80 });
+                await passInput.click();
             }
-            await frame.waitForTimeout(200);
+        } catch (e) {
+            console.log("⚠️ Falló el click por boundingBox, usando click directo");
+            await passInput.click();
         }
 
-        // 4) Escribir la contraseña y enviar
+        await new Promise(res => setTimeout(res, 120));
+
+        // ---- ESCRIBIR CONTRASEÑA ----
         console.log("⌨️ Escribiendo contraseña...");
-        await passInput.type(process.env.HAXBALL_PASSWORD, { delay: 50 });
+        await passInput.type(process.env.HAXBALL_PASSWORD, { delay: 40 });
+
+        await new Promise(res => setTimeout(res, 120));
+
         await passInput.press("Enter");
 
-        console.log("🔓 Contraseña enviada correctamente");
+        console.log("🔓 Contraseña enviada correctamente.");
 
     } catch (err) {
-        console.log("ℹ️ No se pudo introducir la contraseña automáticamente:", err.message);
+        console.log("ℹ️ No se pudo introducir la contraseña:", err.message);
     }
 }
-
 
         // Pequeño delay antes del captcha
         await new Promise(resolve => setTimeout(resolve, 1500));
