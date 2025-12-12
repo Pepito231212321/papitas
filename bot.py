@@ -354,32 +354,21 @@ if __name__ == "__main__":
     try:
         os.system('cls' if os.name == 'nt' else 'clear')
 
-        # Pedimos channel_id directamente
-        channel_id_input = input("Enter channel ID (or leave empty to use channel name): ").strip()
-        if channel_id_input:
-            channel_id = int(channel_id_input)
-            channel_input = None  # No hace falta el slug
-        else:
-            channel_input = input("Enter channel name or URL: ").strip()
-            if not channel_input:
-                print("Channel name needed.")
-                sys.exit(1)
+        # Leer channel_id y threads desde variables de entorno
+        channel_id_env = os.environ.get("CHANNEL_ID")
+        threads_env = os.environ.get("THREADS", "20")
 
-        while True:
-            try:
-                thread_input = int(input("Enter number of viewers: ").strip())
-                if thread_input > 0:
-                    break
-                else:
-                    print("Must be greater than 0")
-            except ValueError:
-                print("Enter a valid number")
+        if not channel_id_env:
+            print("CHANNEL_ID environment variable is required.")
+            sys.exit(1)
 
-        # Si no hay channel_id, lo obtenemos vía la función (opcional)
-        if not channel_id:
-            channel_id = get_channel_info(clean_channel_name(channel_input))
+        channel_id = int(channel_id_env)
+        thread_input = int(threads_env)
+        channel_name = ""  # Opcional, no hace falta para GitHub Actions
 
-        run(thread_input, channel_input if channel_input else "")
+        print(f"Running bot for channel ID {channel_id} with {thread_input} threads")
+
+        run(thread_input, channel_name)
         
     except KeyboardInterrupt:
         stop = True
