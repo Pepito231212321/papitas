@@ -48,25 +48,6 @@ jobs:
           - recaptcha_token: "thr1.AAAAAGlSnEFwifLW_lb9dQ.8WOMkjmW41g"
             index: 14
           - recaptcha_token: "thr1.AAAAAGlSnEpa_TBR0r7fqg.bGpXCO5HQW0"
-            index: 15
-          - recaptcha_token: "thr1.AAAAAGlSnFcLVREvRsE4Cw.Fowm91y9Fps"
-            index: 16
-          - recaptcha_token: "thr1.AAAAAGlSnGwNbXtXfNig3Q.5sGHSAYHn_M"
-            index: 17
-          - recaptcha_token: "thr1.AAAAAGlSm-XdARO9Y4lDoQ.V0bQMV_7pTY"
-            index: 18
-          - recaptcha_token: "thr1.AAAAAGlSm-yshFeNGbu29g.9j7U-farTWY"
-            index: 19
-          - recaptcha_token: "thr1.AAAAAGlSm_yqg3N94Hm5aQ.lm1Pu_uYxRs"
-            index: 20
-          - recaptcha_token: "thr1.AAAAAGlSnEFwifLW_lb9dQ.8WOMkjmW41g"
-            index: 21
-          - recaptcha_token: "thr1.AAAAAGlSnEpa_TBR0r7fqg.bGpXCO5HQW0"
-            index: 22
-          - recaptcha_token: "thr1.AAAAAGlSnFcLVREvRsE4Cw.Fowm91y9Fps"
-            index: 23
-          - recaptcha_token: "thr1.AAAAAGlSnGwNbXtXfNig3Q.5sGHSAYHn_M"
-            index: 24
 
     steps:
       - name: 🧩 Checkout repo
