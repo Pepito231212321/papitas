@@ -17,37 +17,37 @@ jobs:
       max-parallel: 15
       matrix:
         include:
-          - recaptcha_token: "thr1.AAAAAGl-wsTG0bzxFDOR3g.sy26vlIOThI"
+          - recaptcha_token: "thr1.AAAAAGmD-thzn1LVVmDb7w.kehwIZmIQ94"
             index: 0
-          - recaptcha_token: "thr1.AAAAAGl-ws7BL5y-ZeNCeA.JM80T2zpwaM"
+          - recaptcha_token: "thr1.AAAAAGmD-4Nm-wgcI5Pw1Q.ygmC29ADtsQ"
             index: 1
-          - recaptcha_token: "thr1.AAAAAGl-wtiyy-oZkdBa3g.PwA6D6OlvTU"
+          - recaptcha_token: "thr1.AAAAAGmD-5YJpXwzsD1P9w.uwn82DluMaY"
             index: 2
-          - recaptcha_token: "thr1.AAAAAGl-wuyKNhVa7C7sgg.EJmBQ8S3HQU"
+          - recaptcha_token: "thr1.AAAAAGmD-9j5gawYxc6-Rg.zxmoLdK2InM"
             index: 3
-          - recaptcha_token: "thr1.AAAAAGl-wwYwzc_st_WsMw.lUKjWtvlI9Y"
+          - recaptcha_token: "thr1.AAAAAGmD_B4j2VwySjyCDg.iwTL83U0O8o"
             index: 4
-          - recaptcha_token: "thr1.AAAAAGl-wxUwRVtSBxCNeg.3abLc7yGfs8"
+          - recaptcha_token: "thr1.AAAAAGmD_JCVoQSV_0kEvw.hT_yEasozwA"
             index: 5
-          - recaptcha_token: "thr1.AAAAAGl-wypom8zzTZFW1w.E4blArtG_Po"
+          - recaptcha_token: "thr1.AAAAAGmD_PR89oVmR-WpLg.I_GQk5Pu6wI"
             index: 6
-          - recaptcha_token: "thr1.AAAAAGl-w0ND8DcPaa5GsA.UPnsQNaICCY"
+          - recaptcha_token: "thr1.AAAAAGmD_TK1gtREYaq_Tw.Ntqxk96L_Qw"
             index: 7
-          - recaptcha_token: "thr1.AAAAAGl-w3LzMLdV4lmk9A.J_YIxBw3UzI"
+          - recaptcha_token: "thr1.AAAAAGmD_U2eUxKyqnnI8g.SQ0nnUklv10"
             index: 8
-          - recaptcha_token: "thr1.AAAAAGl-w5Ko46qTGtAlgA.grSKv2kXRBs"
+          - recaptcha_token: "thr1.AAAAAGmD_XGLcH4M22pUcA.v1xtizkjhl4"
             index: 9
-          - recaptcha_token: "thr1.AAAAAGl-w55xH2lXBiB2fg.OMX_gAsWPl0"
+          - recaptcha_token: "thr1.AAAAAGmD_ZuC7xDurEEdfw.0ZdwtirI_xM"
             index: 10
-          - recaptcha_token: "thr1.AAAAAGl-w6vU5Qvja0d55A.TknquBIkr8o"
+          - recaptcha_token: "thr1.AAAAAGmD_eQGfgoOjgUuyA.1gzYbIm3bPE"
             index: 11
-          - recaptcha_token: "thr1.AAAAAGl-w7021FGDc_etSQ.G5khokvjb3g"
+          - recaptcha_token: "thr1.AAAAAGmD_uwKAutnpOZRIw.O4zH8RAFPCg"
             index: 12
-          - recaptcha_token: "thr1.AAAAAGl-w-_RIMUWaDfWWw.UnNRo9k4Ji4"
+          - recaptcha_token: "thr1.AAAAAGmD_vrn64RfvQi0rA.x0zrdC6-cDU"
             index: 13
-          - recaptcha_token: "thr1.AAAAAGl-xAUayvLX2JSvMw.5hmlOFw96N4"
+          - recaptcha_token: "thr1.AAAAAGmD_xrVEaatDDutSw.gnzlsZ3lh8s"
             index: 14
-          - recaptcha_token: "thr1.AAAAAGl-xBoTK_6vURHAcA.nQgWNAdJkik"
+          - recaptcha_token: "thr1.AAAAAGmD_y1l8Jyyq9EDiA.BvnRkuVDTZY"
 
     steps:
       - name: 🧩 Checkout repo
