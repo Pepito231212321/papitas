@@ -1,4 +1,4 @@
-name: Host - Recaptcha Rooms
+name: Host - Recaptcha Rooms - Group 2
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: haxball-recaptcha-hosts
+  group: haxball-recaptcha-hosts-group2
   cancel-in-progress: false
 
 jobs:
@@ -17,33 +17,33 @@ jobs:
       max-parallel: 15
       matrix:
         include:
-          - recaptcha_token: "thr1.AAAAAGmQvoRtNyf2pzXDrw.Hl67H9b1C7I"
+          - recaptcha_token: "thr1.AAAAAGmQwADb9aqrmz4-rg.tqt7EWWlgkg"
             index: 0
-          - recaptcha_token: "thr1.AAAAAGmQvoz89A7ZlotBUg.hxNWzvYp7ZM"
+          - recaptcha_token: "thr1.AAAAAGmQwCFG_K9FgANHxg.6C0bVhGdQ_Q"
             index: 1
-          - recaptcha_token: "thr1.AAAAAGmQvpFMLKmuQNj6bA.K3EHpqnyboI"
+          - recaptcha_token: "thr1.AAAAAGmQwCFndLYNYmBlnA.JMukJFeNJJY"
             index: 2
-          - recaptcha_token: "thr1.AAAAAGmQv0s5MgsFfpc8vA.xvnJgAjhuIc"
+          - recaptcha_token: "thr1.AAAAAGmQwTsbcrHsOCulGQ._XPhDtwc_hs"
             index: 3
-          - recaptcha_token: "thr1.AAAAAGmQv1-rzfs96dVFzw.R-SnjgR2ksk"
+          - recaptcha_token: "thr1.AAAAAGmQwTsgJB4D71AYsQ.rAambWMzMcU"
             index: 4
-          - recaptcha_token: "thr1.AAAAAGmQv3ENhq5IAQdKxQ.ko6NrdG9oJE"
+          - recaptcha_token: "thr1.AAAAAGmQwYuD3v2_Q0VlAQ.F5kbop4KPWw"
             index: 5
-          - recaptcha_token: "thr1.AAAAAGmQv4uWIRF0KNC-7g.a4NnVGwxXl4"
+          - recaptcha_token: "thr1.AAAAAGmQwbdS7Da87vSmnQ.LTPmNG1vkPQ"
             index: 6
-          - recaptcha_token: "thr1.AAAAAGmQv5gmdBK58HhVoA.Et7mU5c1UkI"
+          - recaptcha_token: "thr1.AAAAAGmQxECSm0Dh1H4JZg.b2G41ezs61I"
             index: 7
-          - recaptcha_token: "thr1.AAAAAGmQv6KBkIzCmNFCTA.LflrugJoVAM"
+          - recaptcha_token: "thr1.AAAAAGmQxGSIWqDy0cpKSg.5s-F_xKNrnA"
             index: 8
-          - recaptcha_token: "thr1.AAAAAGmQv8GNJw0_U7SxVQ.ryOREQH2sEQ"
+          - recaptcha_token: "thr1.AAAAAGmQxH588J7GNa1M-w.HMUWozqJ1iY"
             index: 9
-          - recaptcha_token: "thr1.AAAAAGmQv8Eq2cDRgQAouQ.uysCCSP07Ek"
+          - recaptcha_token: "thr1.AAAAAGmQxJ-8Wc2fNosadw.7ylwmpcamCk"
             index: 10
-          - recaptcha_token: "thr1.AAAAAGmQv9f7cGW0xlal2g.H4yHEJv8QUE"
+          - recaptcha_token: "thr1.AAAAAGmQxMcYzAhtaFTD5w.TJlZf_FcW18"
             index: 11
-          - recaptcha_token: "thr1.AAAAAGmQv_TB2VeEnSY5gg.hZiS2S1jgpc"
+          - recaptcha_token: "thr1.AAAAAGmQxK6cnAQhaZgm8Q.dSXsFcxu_rI"
             index: 12
-          - recaptcha_token: "thr1.AAAAAGmQv_WCn0Fq5gdrpA.bJlqGTeiUbU"
+          - recaptcha_token: "thr1.AAAAAGmQxPJUQ6gV2aRCkQ._Hemt1guNME"
             index: 13
 
     steps:
