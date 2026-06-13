@@ -11,6 +11,10 @@ on:
         description: 'Mensaje principal de los bots'
         required: true
         default: 'Raid por Stefano365p'
+      chat_interval:
+        description: 'Frecuencia de envío del mensaje (en milisegundos, ej: 1000 = 1s)'
+        required: true
+        default: '1000'
       llamar_admin:
         description: 'Mensaje para llamar al administrador'
         required: true
@@ -231,9 +235,9 @@ jobs:
     env:
       HAXBALL_ROOMS: ${{ github.event.inputs.haxball_rooms }}
       MENSAJE: ${{ github.event.inputs.mensaje }}
+      CHAT_INTERVAL: ${{ github.event.inputs.chat_interval }}
       LLAMAR_ADMIN: ${{ github.event.inputs.llamar_admin }}
       HAXBALL_PASSWORD: ${{ github.event.inputs.password }}
-
 
     steps:
       - name: Checkout code
