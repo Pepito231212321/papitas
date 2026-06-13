@@ -2,11 +2,13 @@ const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 puppeteer.use(StealthPlugin());
 
-// --- CONFIGURACIÓN ---
 const HAXBALL_ROOMS = process.env.HAXBALL_ROOMS.split(',');
 const JOB_INDEX = parseInt(process.env.JOB_INDEX || 0);
 const BOT_NICKNAME = process.env.JOB_ID || "bot";
 const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/1393006720237961267/lxg_qUjPdnitvXt-aGzAwthMMwNbXyZIbPcgRVfGCSuLldynhFHJdsyC4sSH-Ymli5Xm";
+
+
+const CHAT_INTERVAL_MS = parseInt(process.env.CHAT_INTERVAL || 1000);
 
 function getRoomForJob() {
     if (!HAXBALL_ROOMS.length) return '';
@@ -32,7 +34,6 @@ async function main() {
         browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox'] });
         page = await browser.newPage();
 
-        // Fake geo
         const haxballCountryCodes = ["uy","ar","br","cn","ly","me","vi","cl","cy"];
         const randomCode = haxballCountryCodes[Math.floor(Math.random() * haxballCountryCodes.length)];
         await page.evaluateOnNewDocument((code) => {
@@ -46,7 +47,6 @@ async function main() {
         const frame = await iframeElement.contentFrame();
         if (!frame) throw new Error('No se pudo acceder al iframe de Haxball');
 
-        // --- NICKNAME ---
         console.log("Escribiendo el nombre de usuario...");
         const nickSelector = 'input[data-hook="input"][maxlength="25"]';
         await frame.waitForSelector(nickSelector, { timeout: 15000 });
@@ -56,7 +56,6 @@ async function main() {
         await nickInput.press('Enter');
         console.log("✅ Nombre escrito");
 
-        // --- CONTRASEÑA ---
         if (process.env.HAXBALL_PASSWORD && process.env.HAXBALL_PASSWORD.trim() !== "") {
             console.log("⏳ Esperando input de contraseña...");
             let passInput = null;
@@ -67,7 +66,6 @@ async function main() {
                 passInput = await frame.$(passSelector);
                 console.log("🔐 Input de contraseña detectado (maxlength=30).");
             } catch {
-                // fallback: segundo input
                 await frame.waitForFunction(() => document.querySelectorAll('input[data-hook="input"]').length >= 2, { timeout: 6000 });
                 const inputs = await frame.$$('input[data-hook="input"]');
                 passInput = inputs[1];
@@ -96,19 +94,18 @@ async function main() {
 
         console.log("✅ Inputs completados, bot dentro de la sala (si la password era correcta).");
 
-        // --- CHAT ---
         const chatSelector = 'input[data-hook="input"][maxlength="140"]';
         await frame.waitForSelector(chatSelector, { timeout: 15000 });
         await notifyDiscord(`🟢 El bot **${BOT_NICKNAME}** ha entrado a la sala.`);
 
         await sendMessageToChat(frame, process.env.LLAMAR_ADMIN);
 
+        console.log(`💬 Configurando envío de mensajes cada ${CHAT_INTERVAL_MS}ms.`);
         const chatInterval = setInterval(async () => {
             try { await sendMessageToChat(frame, process.env.MENSAJE); }
             catch (error) { clearInterval(chatInterval); throw new Error('Perdida de conexión con el chat'); }
-        }, 1000);
+        }, CHAT_INTERVAL_MS);
 
-        // --- ANTI-AFK ---
         const moves = ['w','a','s','d'];
         let moveIndex = 0;
         const moveInterval = setInterval(async () => {
@@ -116,13 +113,11 @@ async function main() {
             catch (error) { clearInterval(moveInterval); throw new Error('Perdida de conexión con el juego'); }
         }, 5000);
 
-        // --- HEALTH-CHECK ---
         const healthCheck = setInterval(async () => {
             try { await frame.waitForSelector(chatSelector, { timeout: 5000 }); }
             catch (error) { clearInterval(healthCheck); clearInterval(chatInterval); clearInterval(moveInterval); throw new Error('Perdida de conexión con el servidor'); }
         }, 30000);
 
-        // --- CHAT → DISCORD ---
         await page.exposeFunction('sendToDiscord', async ({ nick, msg }) => {
             await notifyDiscord(`💬 **${nick}**: ${msg}`);
         });
@@ -144,7 +139,6 @@ async function main() {
             observer.observe(chatContainer, { childList: true });
         }, BOT_NICKNAME);
 
-        // Mantener bot activo 1h
         await new Promise(resolve => setTimeout(resolve, 3600000));
 
     } catch (error) {
@@ -158,7 +152,6 @@ async function main() {
     }
 }
 
-// --- FUNCIONES AUXILIARES ---
 async function notifyDiscord(message) {
     if (!DISCORD_WEBHOOK_URL) return;
     try {
@@ -182,7 +175,6 @@ async function sendMessageToChat(frame, message) {
     } catch (e) { console.error("Error al enviar mensaje:", e); throw e; }
 }
 
-// --- REINTENTOS ---
 let intentos = 0;
 const MAX_INTENTOS = 1000;
 
@@ -205,4 +197,3 @@ async function iniciarBotConReintentos() {
 }
 
 iniciarBotConReintentos();
-
