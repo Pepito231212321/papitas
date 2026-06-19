@@ -17,34 +17,46 @@ jobs:
       max-parallel: 15
       matrix:
         include:
-          - recaptcha_token: "thr1.AAAAAGmQwADb9aqrmz4-rg.tqt7EWWlgkg"
+          - recaptcha_token: "thr1.AAAAAGo1Tkvbj9YFzQKXPw.InsbaUkXiaM"
             index: 0
-          - recaptcha_token: "thr1.AAAAAGmQwCFG_K9FgANHxg.6C0bVhGdQ_Q"
+          - recaptcha_token: "thr1.AAAAAGo1TmT3ZvuJYSSQ_A.Qp2ITfOGgkg"
             index: 1
-          - recaptcha_token: "thr1.AAAAAGmQwCFndLYNYmBlnA.JMukJFeNJJY"
+          - recaptcha_token: "thr1.AAAAAGo1TnWKlLPYiSpNtg.sSWfov-PSlg"
             index: 2
-          - recaptcha_token: "thr1.AAAAAGmQwTsbcrHsOCulGQ._XPhDtwc_hs"
+          - recaptcha_token: "thr1.AAAAAGo1Tor3L1-UftW8-g.q6jdgrnQows"
             index: 3
-          - recaptcha_token: "thr1.AAAAAGmQwTsgJB4D71AYsQ.rAambWMzMcU"
+          - recaptcha_token: "thr1.AAAAAGo1Tp_CDRD0dOHnqQ.gTRCfxQihlc"
             index: 4
-          - recaptcha_token: "thr1.AAAAAGmQwYuD3v2_Q0VlAQ.F5kbop4KPWw"
+          - recaptcha_token: "thr1.AAAAAGo1TrMOTxdV_Kp7og.AOAia_OKiPU"
             index: 5
-          - recaptcha_token: "thr1.AAAAAGmQwbdS7Da87vSmnQ.LTPmNG1vkPQ"
+          - recaptcha_token: "thr1.AAAAAGo1TsdLVnTVng4LHw.zDolGNzKKh0"
             index: 6
-          - recaptcha_token: "thr1.AAAAAGmQxECSm0Dh1H4JZg.b2G41ezs61I"
+          - recaptcha_token: "thr1.AAAAAGo1TtsMohGmRIYy9Q.97o1HZIGc40"
             index: 7
-          - recaptcha_token: "thr1.AAAAAGmQxGSIWqDy0cpKSg.5s-F_xKNrnA"
+          - recaptcha_token: "thr1.AAAAAGo1TvMruLdag6nj2Q._NxYYuRO-R8"
             index: 8
-          - recaptcha_token: "thr1.AAAAAGmQxH588J7GNa1M-w.HMUWozqJ1iY"
+          - recaptcha_token: "thr1.AAAAAGo1TwcjMrDaauoTdw.B5yZ4_1Dgno"
             index: 9
-          - recaptcha_token: "thr1.AAAAAGmQxJ-8Wc2fNosadw.7ylwmpcamCk"
+          - recaptcha_token: "thr1.AAAAAGo1Txz4HEFpZ16XQQ.pX2nT-TRewg"
             index: 10
-          - recaptcha_token: "thr1.AAAAAGmQxMcYzAhtaFTD5w.TJlZf_FcW18"
+          - recaptcha_token: "thr1.AAAAAGo1TzimY4sCCLokqA.E7xMD57MyKk"
             index: 11
-          - recaptcha_token: "thr1.AAAAAGmQxK6cnAQhaZgm8Q.dSXsFcxu_rI"
+          - recaptcha_token: "thr1.AAAAAGo1T0qqLQMcZiiwTw.LjjXWERkZHg"
             index: 12
-          - recaptcha_token: "thr1.AAAAAGmQxPJUQ6gV2aRCkQ._Hemt1guNME"
+          - recaptcha_token: "thr1.AAAAAGo1T2BRTeQUlATr2g.-9DuJ3JsLp0"
             index: 13
+          - recaptcha_token: "thr1.AAAAAGo1T21i0q0Q6Gvqkg.YaYnl6mNEsE"
+            index: 14
+          - recaptcha_token: "thr1.AAAAAGo1T3mjQ50ICVQebQ.tFFQJhMe1to"
+            index: 15
+          - recaptcha_token: "thr1.AAAAAGo1T4TVkcTAftsQJQ.8fTvU4Cch8k"
+            index: 16
+          - recaptcha_token: "thr1.AAAAAGo1T5bJfwyYyshHDQ.5MoFqKyqfCk"
+            index: 17
+          - recaptcha_token: "thr1.AAAAAGo1T6PNlafSTN5Zwg.baU0x-UNHdo"
+            index: 18
+          - recaptcha_token: "thr1.AAAAAGo1T7aFH-ATMMqJ_Q.1j5VbA4Ywbk"
+            index: 19
 
     steps:
       - name: 🧩 Checkout repo
