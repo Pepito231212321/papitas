@@ -68,20 +68,16 @@ async function sendDiscordRoomLink(webhookUrl, roomLink, roomName) {
 /* ---------- Config (modificable / rotativo por INDEX) ---------- */
 
 const roomNames = [
-    "🐌 ❤️ 😍  TRY   X    MARTU  😍 ❤️ 🐌"
+    "IP de yunny 181.116.56.51 :("
 ];
 
 // LISTA DE GEOS SOLICITADAS
 const geoList = [
-    { lat: -34.6021995544434, lon: -58.3844985961914, flag: "AR" },
-    { lat: -34.613151550293, lon: -58.3772315979004, flag: "AR" },
-    { lat: -34.613151550293, lon: -58.3772315979004, flag: "AR" },
-    { lat: -34.6399993896484, lon: -58.4500007629395, flag: "AR" },
-    { lat: -34.7786636352539, lon: -58.4580917358398, flag: "AR" }
+     { lat: -34.9212608337402, lon: -57.9544181823731, flag: "AR" }
 ];
 
-const maxPlayersList = [2, 2, 2, 2, 2];
-const fakePlayersList = [14, 14, 14, 14, 14];
+const maxPlayersList = [9, 9, 9, 9, 9];
+const fakePlayersList = [11];
 
 /* ---------- Env / selección por index ---------- */
 
@@ -135,7 +131,6 @@ Room.create(
             if (webhookUrl) sendDiscordRoomLink(webhookUrl, roomLink, roomName);
         };
 
-        /* 🔥 Mensajes estilo TIC TAC Teleese COME BACK SOON */
         room.onPlayerJoin = (playerObj) => {
             try {
 
@@ -143,9 +138,7 @@ Room.create(
                 sendDiscordPlayer(webhookUrl, playerObj, roomName);
 
                 const mensajes = [
-                    "❤️ Lowsita × Lowsito ❤️",
-                    "La mas linda Kiara",
-                    
+                    "Que triste :("
                 ];
 
                 let i = 0;
